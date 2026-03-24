@@ -1,0 +1,623 @@
+\documentclass[aps,prd,twocolumn,superscriptaddress,nofootinbib]{revtex4-2}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\begin{document}
+
+\title{Emergent Quantum Dynamics from Non-Markovian Holographic Evolution on the De~Sitter Horizon}
+
+\author{Charles Grant Smith Jr.}
+\affiliation{Independent Researcher, Chicago, Illinois, USA}
+\affiliation{Member, American Physical Society}
+
+\date{\today}
+
+\begin{abstract}
+We propose that three-dimensional quantum dynamics emerges as the holographic projection of non-Markovian stochastic evolution on the two-dimensional de~Sitter cosmological horizon. The horizon's finite microstate space, of dimension $\exp(A/4G\hbar)$ set by the Gibbons--Hawking entropy, serves as the configuration space for an indivisible stochastic process---a recently identified class of maximally general non-Markovian dynamical law. Applying the stochastic-quantum correspondence to this boundary process yields boundary unitary dynamics and a Hilbert space whose holographic projection provides a framework for the emergence of bulk quantum field theory and semiclassical gravity. In this framework, bulk quantum coherence and interference are artifacts of boundary indivisibility, and the retarded memory kernel governing bulk dynamics inherits its causal structure from the low-entropy cosmological initial condition rather than from a fundamental violation of time-reversal symmetry. The boundary's finite-area microstate space has a bounded response time, which enters the bulk as a non-Markovian filter on matter perturbations. We derive three consequences: (i)~a galactic acceleration threshold $a_u = cH_0/(2\pi)$ from de~Sitter horizon thermodynamics, requiring no additional free parameters, (ii)~a redshift-dependent suppression of the matter power spectrum at baryon acoustic oscillation scales, and (iii)~a falsifiable relation $r = 8\pi^2\beta^2$ between the tensor-to-scalar ratio and cosmic birefringence angle. Within the sectors tested in companion papers, the framework introduces no dark matter particle, no additional dark-energy degrees of freedom, and no free parameters beyond the measured Hubble constant.
+\end{abstract}
+
+\maketitle
+
+%======================================================================
+% I. INTRODUCTION
+%======================================================================
+\section{Introduction}
+\label{sec:intro}
+
+The holographic principle---that the maximum entropy of a bounded spacetime region scales as its boundary area rather than its volume~\cite{tHooft1993,Susskind1995}---is among the deepest structural insights of theoretical physics. It is supported by black hole thermodynamics~\cite{Bekenstein1973,Hawking1975}, realized explicitly in the AdS/CFT correspondence~\cite{Maldacena1999}, extended to cosmological settings through the covariant entropy bound~\cite{Bousso1999} and the de~Sitter entropy of Gibbons and Hawking~\cite{GibbonsHawking1977}, and given geometric substance by the Ryu--Takayanagi formula relating entanglement entropy to minimal surfaces~\cite{RyuTakayanagi2006}. A growing body of work has deepened the connection between entanglement and spacetime geometry, from the ER\,=\,EPR conjecture~\cite{MaldacenaSusskind2013} to demonstrations that spatial connectivity itself may emerge from quantum entanglement~\cite{VanRaamsdonk2010,CaoCarrollMichalakis2017}. Jacobson's derivation of the Einstein field equations from horizon thermodynamics~\cite{Jacobson1995} further suggests that gravity is not fundamental but emergent from information-theoretic constraints at causal boundaries.
+
+Yet a central physical question remains open: \emph{by what mechanism does a boundary with area-law information content give rise to the volume-law quantum dynamics observed in the bulk?} The AdS/CFT correspondence provides an existence proof that such a mechanism operates, but the boundary theory is itself a quantum field theory whose foundational structure---Hilbert spaces, unitarity, the Born rule---is assumed rather than derived. If spacetime geometry emerges from boundary entanglement, what is entanglement itself emerging from?
+
+This paper proposes an answer grounded in two recent developments.
+
+The first is the stochastic-quantum correspondence established by Barandes~\cite{Barandes2025SQC,Barandes2025SQT,Barandes2025QSIP}, which demonstrates an exact mathematical equivalence between indivisible stochastic processes---a maximally general class of non-Markovian dynamical laws acting on classical configuration spaces via ordinary probabilities---and the full Hilbert-space formalism of quantum theory, including unitary evolution, the Born rule, and the algebra of observables. Indivisible stochastic processes, first identified by Wolf and Cirac~\cite{WolfCirac2008} in the context of quantum channels and extended to the classical setting by Milz and Modi~\cite{MilzModi2021}, are processes whose transition probabilities between an initial and a final time cannot generically be factored through intermediate times. The stochastic-quantum correspondence shows that the exotic features of quantum theory---superposition, interference, coherence, entanglement, complex Hilbert spaces, and the non-commutative algebra of observables---are mathematical artifacts of representing such an indivisible process in a Markovian-looking Hilbert-space language~\cite{Barandes2025SQC}.
+
+The second development is the growing body of observational evidence for non-Markovian structure in cosmological dynamics. The DESI collaboration's baryon acoustic oscillation (BAO) data contain hints of evolving dark energy with $w_0 > -1$~\cite{DESI2024}, which in the standard $\Lambda$CDM framework requires an unexplained time-dependent component. Persistent anomalies in galactic rotation curves resist modeling by collisionless cold dark matter alone~\cite{McGaugh2016SPARC,Lelli2017}, suggesting missing dynamical structure at the galaxy scale. The observed cosmic birefringence signal~\cite{MinamiKomatsu2020,Eskilt2022} lacks a compelling origin within $\Lambda$CDM. We will argue that these disparate anomalies share a common origin in the non-Markovian character of boundary-to-bulk holographic evolution.
+
+Our proposal is the following. The de~Sitter cosmological horizon defines a finite configuration space $\mathcal{C}$ of dimension $N = \exp(S_{\rm dS})$, where $S_{\rm dS} = A/(4G\hbar)$ is the Gibbons--Hawking entropy. We propose that this configuration space carries indivisible stochastic dynamics: a family of transition probabilities $\Gamma_{ij}(\eta \leftarrow \eta_0)$ governing the evolution of boundary microstates between conformal times, which are generically non-factorizable through intermediate times. Via the stochastic-quantum correspondence, this boundary process has an equivalent Hilbert-space representation with unitary evolution and a well-defined density matrix. Holographic projection of this boundary quantum theory into the three-dimensional bulk then provides the framework within which quantum field theory and emergent gravitational dynamics operate.
+
+The resulting picture has a specific physical consequence that distinguishes it from $\Lambda$CDM. Because the boundary microstate space is finite and the stochastic dynamics is indivisible, the bulk inherits a retarded memory kernel $G_{\rm ret}(\eta - \eta')$ that acts as a non-Markovian filter on baryonic source perturbations. Matter perturbations at wavenumber $k$ acquire an effective additional contribution
+\begin{equation}
+m(k,\eta) = \int_0^{\eta} G_{\rm ret}(\eta - \eta')\, S_b(k,\eta')\, d\eta',
+\label{eq:memory}
+\end{equation}
+which modifies the growth of structure without invoking a dark matter particle. The kernel's retarded character is not a fundamental axiom but a consequence of the low-entropy initial boundary condition at the onset of cosmological expansion---the same boundary condition responsible for the thermodynamic arrow of time~\cite{Penrose1979,Carroll2010}.
+
+Three properties of this kernel are derivable from boundary thermodynamics alone, without fitting to data:
+
+(a)~The Gibbons--Hawking temperature $T_{\rm dS} = H_0/(2\pi k_B)$ of the de~Sitter horizon yields a characteristic acceleration scale
+\begin{equation}
+a_u = \frac{cH_0}{2\pi},
+\label{eq:au}
+\end{equation}
+below which the memory kernel's contribution to galactic dynamics becomes dominant. This threshold, requiring no additional free parameters, is tested against 175 galaxies in the SPARC sample in a companion paper~\cite{PaperI}, where it outperforms the empirically calibrated MOND scale $a_0$ in a majority of cases.
+
+(b)~The finite boundary area imposes a Bekenstein--Hawking cap on the kernel's information content, requiring $G_{\rm ret}$ to be a low-pass filter in wavenumber space. The resulting suppression of the matter power spectrum $P(k)$ at BAO scales, growing with redshift, is quantified in Ref.~\cite{PaperVIII} using the CLASS Boltzmann code~\cite{CLASS2011} and predicts $1$--$8\%$ deviations from $\Lambda$CDM testable against DESI DR1/DR2 data~\cite{DESI2024}.
+
+(c)~The boundary's geometric structure constrains the cosmic birefringence angle to $\beta = \sqrt{2\varepsilon}/\pi$, where $\varepsilon$ is a residual boundary parameter, yielding a joint prediction $r = 8\pi^2\beta^2$ relating the tensor-to-scalar ratio to the birefringence signal. This relationship is falsifiable by LiteBIRD~\cite{LiteBIRD2023}, the Simons Observatory~\cite{SimonsObs2019}, and CMB-S4~\cite{CMBS42016}.
+
+The present paper focuses on the foundational question: \emph{why does quantum mechanics in the bulk take the form it does?} Our answer---that it is the double holographic translation of pre-quantum stochastic dynamics on the de~Sitter screen---provides a unified origin for the specific features of quantum theory (complex Hilbert spaces, unitarity, the Born rule, the non-commutative observable algebra) and for the specific anomalies in cosmological data that motivate dark matter and dark energy.
+
+\emph{Series context.} This work is one paper in a broader program in which low-acceleration galactic phenomenology, cluster-scale lensing offsets, CMB and BAO signatures, and late-time cosmic acceleration are treated as sector-dependent manifestations of a common horizon-based, retarded-response framework. The purpose of the present paper is limited: it provides the foundational mechanism---the double translation of boundary indivisibility into bulk quantum dynamics---and derives three consequences that are tested quantitatively in companion papers. Broader claims about individual observational sectors are deferred to those papers.
+
+\emph{Scope of claim.} This paper does not establish a complete microscopic theory of quantum gravity, nor does it derive the full dynamics of the de~Sitter holographic map. The holographic indivisibility conjecture (Sec.~\ref{sec:projection})---that the full de~Sitter holographic map preserves non-Markovianity---is a conjecture, not a theorem. The quantitative form of the memory kernel $G_{\rm ret}$ is constrained but not fully derived. The value of the framework rests on the falsifiability of its sector-specific predictions, not on the completeness of its microscopic foundations.
+
+The paper is organized as follows. Section~\ref{sec:SQC} reviews the stochastic-quantum correspondence and the formal structure of indivisible processes. Section~\ref{sec:deSitter} identifies the de~Sitter horizon as the physical arena for such a process. Section~\ref{sec:projection} derives the holographic projection and the emergence of the bulk memory kernel. Section~\ref{sec:coherence} establishes the connection between boundary indivisibility and bulk quantum coherence. Section~\ref{sec:predictions} discusses falsifiable predictions and the relationship to existing frameworks. Section~\ref{sec:discussion} concludes.
+
+
+
+%======================================================================
+% II. INDIVISIBLE STOCHASTIC PROCESSES AND THE STOCHASTIC-QUANTUM CORRESPONDENCE
+%======================================================================
+\section{Indivisible stochastic processes and the stochastic-quantum correspondence}
+\label{sec:SQC}
+
+\subsection{Configuration spaces and transition matrices}
+
+We begin by reviewing the mathematical framework of indivisible stochastic processes following Refs.~\cite{Barandes2025SQC,Barandes2025SQT,Barandes2025QSIP}. The framework rests on two ingredients: a configuration space $\mathcal{C}$ and a dynamical law.
+
+A configuration space $\mathcal{C} = \{1, 2, \ldots, N\}$ is a finite set of possible configurations of the system, labeled by positive integers. Probabilities at a conditioning time $t_0$ are denoted $p_j(t_0)$, and probabilities at a target time $t$ are denoted $p_i(t)$. The dynamical law is specified by a family of transition matrices
+\begin{equation}
+\Gamma_{ij}(t \leftarrow t_0) \equiv p(i,t \,|\, j,t_0),
+\label{eq:transition}
+\end{equation}
+whose entries are ordinary conditional probabilities satisfying non-negativity,
+\begin{equation}
+\Gamma_{ij}(t \leftarrow t_0) \geq 0,
+\label{eq:nonneg}
+\end{equation}
+and the column-sum normalization condition
+\begin{equation}
+\sum_{i=1}^{N} \Gamma_{ij}(t \leftarrow t_0) = 1 \quad \text{for all } j.
+\label{eq:colsum}
+\end{equation}
+The continuity condition requires that in the limit $t \to t_0$, the transition matrix approaches the $N \times N$ identity matrix:
+\begin{equation}
+\lim_{t \to t_0} \Gamma(t \leftarrow t_0) = \mathbf{1}_N.
+\label{eq:continuity}
+\end{equation}
+The relationship between initial and final probabilities is given by the law of total probability (Bayesian marginalization):
+\begin{equation}
+p_i(t) = \sum_{j=1}^{N} \Gamma_{ij}(t \leftarrow t_0)\, p_j(t_0).
+\label{eq:marginalization}
+\end{equation}
+This is a linear relationship in the probabilities---a fact whose significance will become apparent when we connect to quantum dynamics.
+
+\subsection{Divisibility and indivisibility}
+
+A stochastic process is \emph{divisible} if for every intermediate time $t'$ satisfying $t > t' > t_0$, there exists a stochastic matrix $\tilde{\Gamma}(t \leftarrow t')$ such that
+\begin{equation}
+\Gamma(t \leftarrow t_0) = \tilde{\Gamma}(t \leftarrow t')\, \Gamma(t' \leftarrow t_0).
+\label{eq:divisibility}
+\end{equation}
+This is the stochastic analogue of the semigroup property. Markov processes are divisible: knowing the present state suffices to determine future evolution, and the dynamics can be restarted at any intermediate time.
+
+An \emph{indivisible} stochastic process is one for which Eq.~\eqref{eq:divisibility} generically fails. The transition matrix $\Gamma(t \leftarrow t_0)$ is supplied from time $t_0$ to time $t$, but there is no guarantee that the dynamics can be factored through intermediate times. To see why, suppose $\Gamma(t' \leftarrow t_0)$ has a matrix inverse and define
+\begin{equation}
+\tilde{\Gamma}(t \leftarrow t') \equiv \Gamma(t \leftarrow t_0)\, \Gamma^{-1}(t' \leftarrow t_0).
+\label{eq:attempted_division}
+\end{equation}
+While the right-hand side is well-defined as a matrix, it is generically \emph{not} a stochastic matrix: its entries can be negative. The appearance of negative entries precisely where one would need valid probabilities is the hallmark of indivisibility~\cite{WolfCirac2008,MilzModi2021,Barandes2025SQC}.
+
+The terminology \emph{indivisible} appears to originate with Wolf and Cirac~\cite{WolfCirac2008} in the context of quantum channels. Classical indivisible stochastic processes were introduced by Milz and Modi~\cite{MilzModi2021} and developed into a complete physical framework by Barandes~\cite{Barandes2025SQC,Barandes2025SQT}.
+
+\subsection{The dictionary formula}
+
+Because $\Gamma_{ij}(t \leftarrow t_0) \geq 0$, each entry can be written as the modulus-squared of a complex number. One introduces a complex $N \times N$ matrix $\Theta(t \leftarrow t_0)$, the \emph{time-evolution operator}, satisfying
+\begin{equation}
+\Gamma_{ij}(t \leftarrow t_0) = |\Theta_{ij}(t \leftarrow t_0)|^2.
+\label{eq:dictionary_basic}
+\end{equation}
+The matrix $\Theta$ is guaranteed to exist but is not unique---it is a ``potential'' for the transition matrix, in analogy with the relationship between a potential energy and a Newtonian force~\cite{Barandes2025SQC}. The normalization condition Eq.~\eqref{eq:colsum} requires
+\begin{equation}
+\sum_{i=1}^{N} |\Theta_{ij}(t \leftarrow t_0)|^2 = 1 \quad \text{for all } j.
+\label{eq:theta_norm}
+\end{equation}
+
+The central result of the stochastic-quantum correspondence can be expressed as a \emph{dictionary} that translates between the stochastic and Hilbert-space descriptions. Introducing the density matrix
+\begin{equation}
+\rho_{ij}(t) \equiv \Theta_{ik}(t \leftarrow t_0)\, \rho_{kl}(t_0)\, \Theta^{\dagger}_{lj}(t \leftarrow t_0),
+\label{eq:density_evolution}
+\end{equation}
+the diagonal entries of $\rho$ recover the configuration-space probabilities:
+\begin{equation}
+p_i(t) = \rho_{ii}(t).
+\label{eq:diagonal}
+\end{equation}
+The off-diagonal entries---the \emph{coherences}---encode the indivisibility of the underlying stochastic process. They have no direct probabilistic meaning in the stochastic picture but are essential for the Hilbert-space description to correctly reproduce the indivisible dynamics.
+
+\subsection{From indivisible processes to unitary quantum mechanics}
+
+If $\Theta(t \leftarrow t_0)$ is already a unitary matrix $U(t \leftarrow t_0)$, the process is called \emph{unistochastic}, and the evolution of the density matrix is given by the standard quantum-mechanical rule
+\begin{equation}
+\rho(t) = U(t \leftarrow t_0)\, \rho(t_0)\, U^{\dagger}(t \leftarrow t_0).
+\label{eq:unitary_evolution}
+\end{equation}
+If $U$ is a sufficiently differentiable function of time, one obtains the Schr\"{o}dinger equation:
+\begin{equation}
+i\hbar \frac{dU}{dt} = H(t)\, U(t \leftarrow t_0),
+\label{eq:schrodinger}
+\end{equation}
+where $H(t)$ is a self-adjoint Hamiltonian matrix. Unitarity, the Schr\"{o}dinger equation, and the need for complex numbers all emerge from the structure of the correspondence rather than being postulated.
+
+If $\Theta$ is not already unitary, the Stinespring dilation theorem~\cite{Stinespring1955} guarantees that by enlarging the configuration space from $N$ to at most $N^3$ elements---introducing an ancillary system that need not be regarded as physical---the evolution can always be implemented as unitary. The original process is then a subsystem of a larger unistochastic process~\cite{Barandes2025SQC,Barandes2025SQT}.
+
+\subsection{Interference as encoded indivisibility}
+
+The connection between indivisibility and quantum interference is now transparent. Consider a unistochastic process with unitary $U(t \leftarrow t_0)$. For intermediate time $t'$, one can always write $U(t \leftarrow t_0) = U(t \leftarrow t') \cdot U(t' \leftarrow t_0)$ because unitary operators compose. However, the corresponding transition probabilities satisfy
+\begin{equation}
+\Gamma_{ij}(t \leftarrow t_0) = \left| \sum_{k} U_{ik}(t \leftarrow t') \, U_{kj}(t' \leftarrow t_0) \right|^2,
+\label{eq:interference}
+\end{equation}
+which is \emph{not} equal to $\sum_k |U_{ik}|^2 |U_{kj}|^2$ due to cross-terms. These cross-terms are quantum interference. They arise because modulus-squaring does not commute with matrix multiplication~\cite{Barandes2025QSIP}. The divisibility of the unitary operator is a mathematical convenience; the physical transition probabilities remain indivisible.
+
+\subsection{Gauge invariance}
+
+The time-evolution operator $\Theta(t \leftarrow t_0)$ is not unique. For any time-dependent unitary matrix $V(t)$, the transformation
+\begin{equation}
+\Theta(t \leftarrow t_0) \mapsto V(t)\, \Theta(t \leftarrow t_0)\, V^{\dagger}(t_0)
+\label{eq:gauge}
+\end{equation}
+leaves all probabilities $p_i(t)$, expectation values, and the transition matrix $\Gamma(t \leftarrow t_0)$ unchanged~\cite{Barandes2025QSIP}. This gauge freedom corresponds precisely to the basis invariance of quantum mechanics: the freedom to choose different representations in Hilbert space without affecting physical predictions. In the indivisible stochastic picture, it reflects the non-uniqueness of the potential $\Theta$ for a given set of transition probabilities.
+
+
+%======================================================================
+% III. THE DE SITTER HORIZON AS CONFIGURATION SPACE
+%======================================================================
+\section{The de~Sitter horizon as configuration space}
+\label{sec:deSitter}
+
+\subsection{Finite microstate space from area-law entropy}
+
+The Gibbons--Hawking entropy~\cite{GibbonsHawking1977} of the de~Sitter cosmological horizon is
+\begin{equation}
+S_{\rm dS} = \frac{A}{4G\hbar} = \frac{\pi c^2}{G\hbar H_0^2},
+\label{eq:GH_entropy}
+\end{equation}
+where $A = 4\pi (c/H_0)^2$ is the horizon area. For the observed value $H_0 \approx 67.4\;\text{km\,s}^{-1}\text{Mpc}^{-1}$, this yields $S_{\rm dS} \sim 10^{122}$. In the microstate interpretation, this entropy counts the number of distinguishable configurations of the horizon:
+\begin{equation}
+N = \exp(S_{\rm dS}).
+\label{eq:N_configs}
+\end{equation}
+This is finite. The de~Sitter horizon defines a \emph{finite} configuration space $\mathcal{C} = \{1, 2, \ldots, N\}$ in the precise sense required by the indivisible stochastic framework of Sec.~\ref{sec:SQC}.
+
+We do not need to specify the microscopic nature of these configurations. Just as the Bekenstein--Hawking entropy of a black hole counts microstates without requiring a complete theory of quantum gravity to enumerate them, $N = \exp(S_{\rm dS})$ defines the cardinality of $\mathcal{C}$ from macroscopic thermodynamics alone. The configurations are primitives of the theory, defined by the horizon area. That they admit an entanglement-entropy interpretation~\cite{RyuTakayanagi2006,VanRaamsdonk2010} is a consequence of applying the stochastic-quantum correspondence (Sec.~\ref{sec:SQC}) to this configuration space, not a premise.
+
+\subsection{The Gibbons--Hawking temperature and the acceleration scale}
+
+The de~Sitter horizon radiates at the Gibbons--Hawking temperature~\cite{GibbonsHawking1977}
+\begin{equation}
+T_{\rm dS} = \frac{\hbar H_0}{2\pi k_B}.
+\label{eq:TdS}
+\end{equation}
+This is the direct cosmological analogue of the Unruh temperature $T_U = \hbar a/(2\pi c k_B)$ experienced by a uniformly accelerating observer~\cite{Unruh1976}. Equating $T_{\rm dS} = T_U$ yields a characteristic acceleration:
+\begin{equation}
+a_u = \frac{cH_0}{2\pi} \approx 1.03 \times 10^{-10}\;\text{m\,s}^{-2}.
+\label{eq:au_derived}
+\end{equation}
+This scale, derived from the horizon thermodynamics with no free parameters, marks the threshold below which the boundary's non-Markovian contribution to bulk dynamics becomes significant. It is close to, but distinct from, the empirically calibrated MOND acceleration $a_0 \approx 1.2 \times 10^{-10}\;\text{m\,s}^{-2}$~\cite{Milgrom1983,McGaugh2016SPARC}. The relationship between $a_u$ and $a_0$---and the sense in which both reflect a common cosmological origin---is explored quantitatively in Ref.~\cite{PaperI}.
+
+The physical mechanism connecting this cosmological scale to galactic dynamics is a frequency-matching condition. A baryonic perturbation with local acceleration $a_b$ has a characteristic dynamical timescale $\tau_{\rm dyn} \sim \sqrt{r/a_b}$, where $r$ is the galactocentric radius. The boundary's thermal fluctuation timescale is $\tau_{\rm th} \sim \hbar/(k_B T_{\rm dS}) = 2\pi/H_0$, set by the Gibbons--Hawking temperature. When $a_b \gg a_u$, the perturbation timescale is short compared to $\tau_{\rm th}$: the boundary's thermal response averages over many perturbation cycles, and the memory kernel's contribution to the bulk dynamics is suppressed by the low-pass filtering described in Sec.~\ref{sec:projection}. Newtonian gravity is recovered. When $a_b \lesssim a_u$, the perturbation timescale becomes comparable to or longer than $\tau_{\rm th}$: the boundary responds coherently to the perturbation, the memory kernel contributes maximally, and the effective gravitational dynamics deviates from the Newtonian prediction. The threshold $a_u = cH_0/(2\pi)$ thus marks the crossover between the high-frequency regime (where the boundary's low-pass filter suppresses the non-Markovian contribution) and the low-frequency regime (where the full memory kernel acts).
+
+The factor of $1/(2\pi)$ in $a_u$ is not a tuned parameter but a universal structural feature of thermal quantum systems. It appears identically in the Unruh temperature $T_U = \hbar a/(2\pi c k_B)$, the Gibbons--Hawking temperature $T_{\rm dS} = \hbar H_0/(2\pi k_B)$, and the Hawking temperature $T_H = \hbar \kappa/(2\pi c k_B)$, where $\kappa$ is the surface gravity. In each case, $2\pi$ arises from the periodicity of the Euclidean time coordinate in the thermal Green's function---the Kubo--Martin--Schwinger (KMS) condition~\cite{Kubo1966}. The acceleration scale $a_u$ inherits this factor because it is defined by the condition $T_{\rm dS} = T_U$, which equates two expressions that independently carry the same $2\pi$ from thermal periodicity. In this sense, $a_u$ is not a new scale introduced by the framework but a necessary consequence of applying standard thermal physics to the de~Sitter horizon.
+
+\subsection{Indivisibility is generic for finite-area horizons}
+
+Why should we expect the boundary dynamics to be indivisible rather than Markovian? Three arguments suggest that indivisibility is the generic case for a finite-area system.
+
+\emph{First}, the Bekenstein--Hawking bound limits the information capacity of the boundary. A Markovian process requires that the complete dynamical law be specifiable from a single time-slice---the present state determines all future states. For a system with $N$ configurations, a Markov transition matrix has $N(N-1)$ independent parameters. The full specification of an indivisible process from $t_0$ to $t$ requires only the same number of parameters for each time pair, but these parameters \emph{cannot be decomposed} into Markovian factors at intermediate times. The failure of divisibility is not an exotic special case; it is what happens when the finite information capacity of the boundary is insufficient to encode the full Markovian structure at every intermediate time.
+
+\emph{Second}, recent work on quantum Darwinism and quantum Fisher information~\cite{Kiely2025} demonstrates that classicality emergence has a finite timescale $\tau_F$, and that intra-environmental correlations degrade classical objectivity. Applied to the boundary, this implies that the boundary's microstate configuration cannot reconfigure instantaneously in response to bulk perturbations. The finite response time is a physical source of indivisibility: the transition probabilities from $\eta_0$ to $\eta$ encode the cumulative effect of a finite-speed information update process that cannot be factored through intermediate times where the update is incomplete.
+
+\emph{Third}, the work of Jacobson~\cite{Jacobson1995} shows that Einstein's equations follow from thermodynamic equilibrium at local causal horizons. A boundary in thermodynamic equilibrium is, by definition, in a maximum-entropy state given its constraints. Perturbations away from equilibrium---sourced by bulk matter inhomogeneities---relax back to equilibrium on a finite timescale set by the system's degrees of freedom and the perturbation amplitude. During this relaxation, the boundary dynamics is not Markovian: the relaxation process depends on the initial perturbation, not just the current boundary state. This is precisely the structure of an indivisible stochastic process.
+
+\subsection{The retarded direction from initial conditions}
+
+An indivisible stochastic process does not fundamentally break time-reversal symmetry. The transition matrix $\Gamma_{ij}(\eta \leftarrow \eta_0)$ can in principle be formulated in either temporal direction~\cite{Barandes2025SQC}. What selects the retarded direction---past influencing present, not future influencing present---is the initial condition.
+
+At the onset of the cosmological expansion, the boundary is in a state of minimal configurational complexity. Following Penrose's Weyl curvature hypothesis~\cite{Penrose1979} and its information-theoretic formulations~\cite{Carroll2010}, the initial state has entropy far below the de~Sitter maximum. Subsequent evolution increases the boundary's configurational complexity, defining a thermodynamic arrow of time. The retarded memory kernel $G_{\rm ret}(\eta - \eta')$ inherits this arrow: it couples past source perturbations to the present boundary state because the initial condition establishes a direction of increasing complexity.
+
+This is a spontaneous breaking of time-reversal symmetry in the sense of Barandes~\cite{Barandes2025SQC}: the fundamental dynamical framework is time-symmetric, but any particular cosmological instantiation, specified by its initial condition, selects a preferred temporal direction. The analogy is to spatial isotropy: the laws of physics are rotationally invariant, but the universe we inhabit is not, because its matter distribution spontaneously breaks this symmetry.
+
+
+%======================================================================
+% IV. HOLOGRAPHIC PROJECTION AND THE BULK MEMORY KERNEL
+%======================================================================
+\section{Holographic projection and the bulk memory kernel}
+\label{sec:projection}
+
+\subsection{The double translation}
+
+We now describe the chain of maps connecting boundary stochastic dynamics to bulk physics. The chain has two stages.
+
+\emph{Stage 1: Stochastic-quantum correspondence on the boundary.} The boundary configuration space $\mathcal{C}$ with $N = \exp(S_{\rm dS})$ elements carries an indivisible stochastic process with transition matrix $\Gamma^{\rm bdy}_{ij}(\eta \leftarrow \eta_0)$. Via the dictionary formula Eq.~\eqref{eq:dictionary_basic}, this defines a time-evolution operator $\Theta^{\rm bdy}(\eta \leftarrow \eta_0)$ and, through Stinespring dilation if necessary, a unitary operator $U^{\rm bdy}(\eta \leftarrow \eta_0)$ acting on a boundary Hilbert space $\mathcal{H}_{\rm bdy}$ of dimension at most $N^3$. The boundary now has a complete quantum-mechanical description: a Hilbert space, unitary evolution, a density matrix $\rho^{\rm bdy}(\eta)$, and a self-adjoint Hamiltonian $H^{\rm bdy}(\eta)$.
+
+\emph{Stage 2: Holographic projection to the bulk.} The boundary Hilbert space $\mathcal{H}_{\rm bdy}$ is related to the bulk Hilbert space $\mathcal{H}_{\rm bulk}$ by a holographic map. In AdS/CFT, this map is realized by the HKLL reconstruction~\cite{HKLL2006} and the entanglement wedge reconstruction~\cite{Almheiri2015,Dong2016,Penington2020}. In the de~Sitter context, the precise form of the holographic map remains an active area of research~\cite{Strominger2001,AnniosdeSitter2011}. We therefore state the following as a conjecture, and identify the minimal properties the map must possess for the framework to be self-consistent:
+
+\emph{Holographic indivisibility conjecture.} There exists a holographic map $\Phi: \mathcal{H}_{\rm bdy} \to \mathcal{H}_{\rm bulk}$ satisfying three properties: (i)~\emph{linearity}---$\Phi$ acts linearly on density matrices, so that $\rho^{\rm bulk}(\eta) = \Phi[\rho^{\rm bdy}(\eta)]$; (ii)~\emph{trace preservation}---$\text{Tr}[\rho^{\rm bulk}] = \text{Tr}[\rho^{\rm bdy}] = 1$, ensuring total probability is conserved; and (iii)~\emph{indivisibility propagation}---if the boundary process is indivisible at an intermediate time $\eta'$, the induced bulk process is also indivisible at $\eta'$, so that non-Markovianity is not erased by the holographic projection. Property~(iii) is demonstrated for the simplest case---coarse-graining by marginalization over grouped configurations---in Sec.~\ref{sec:toymodel}. Whether it holds for the full de~Sitter holographic map is an open question whose resolution requires progress on dS/CFT that lies beyond the scope of this paper. We proceed under this conjecture and evaluate its consistency through the predictions it generates.
+
+The composition of these two stages yields a chain:
+\begin{equation}
+\Gamma^{\rm bdy}_{ij} \;\xrightarrow{\;\text{SQC}\;}\; U^{\rm bdy}(\eta) \;\xrightarrow{\;\text{holo}\;}\; \rho^{\rm bulk}(k,\eta).
+\label{eq:chain}
+\end{equation}
+Bulk quantum mechanics---with all its Hilbert-space structure, complex amplitudes, interference, and entanglement---is thus a twice-encoded representation of the boundary's pre-quantum stochastic dynamics.
+
+\subsection{Illustrative example: double translation for a three-state boundary}
+\label{sec:toymodel}
+
+We illustrate the double translation with an exactly solvable model that demonstrates how boundary indivisibility propagates to the bulk through holographic coarse-graining.
+
+\emph{Boundary system.} Consider a boundary with $N = 3$ configurations $\mathcal{C} = \{1, 2, 3\}$. The dynamics is generated by the cyclic permutation
+\begin{equation}
+\Sigma = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix},
+\label{eq:Sigma}
+\end{equation}
+which maps $1 \to 2 \to 3 \to 1$ at each discrete time step $\delta t$. The continuous-time unitary evolution $U(t) = \Sigma^{t/\delta t}$ is well-defined because every permutation matrix is unitary, and the fractional power of a unitary matrix is unitary~\cite{Barandes2025SQT}. Setting $\delta t = 1$ for simplicity, the transition matrix $\Gamma_{ij}(t) = |U_{ij}(t)|^2$ at the half-step $t = 1/2$ is
+\begin{equation}
+\Gamma\!\left(\tfrac{1}{2}\right) = \frac{1}{9}\begin{pmatrix} 4 & 1 & 4 \\ 4 & 4 & 1 \\ 1 & 4 & 4 \end{pmatrix}.
+\label{eq:Gamma_half}
+\end{equation}
+All entries are non-negative and each column sums to unity: this is a valid stochastic matrix. The matrix is doubly stochastic (rows also sum to unity), as guaranteed for unistochastic processes~\cite{Barandes2025SQC}.
+
+\emph{Indivisibility.} At $t = 1$, the transition matrix is the permutation itself: $\Gamma(1) = \Sigma$. If the process were divisible at $t' = 1/2$, there would exist a stochastic matrix $\tilde{\Gamma}(1 \leftarrow \tfrac{1}{2})$ satisfying $\Gamma(1) = \tilde{\Gamma} \cdot \Gamma(\tfrac{1}{2})$. Computing $\tilde{\Gamma} = \Gamma(1) \cdot \Gamma^{-1}(\tfrac{1}{2})$ yields
+\begin{equation}
+\tilde{\Gamma} = \frac{1}{3}\begin{pmatrix} \phantom{-}4 & -5 & \phantom{-}4 \\ \phantom{-}4 & \phantom{-}4 & -5 \\ -5 & \phantom{-}4 & \phantom{-}4 \end{pmatrix}.
+\label{eq:Gamma_tilde}
+\end{equation}
+The entries $-5/3$ are manifestly negative: $\tilde{\Gamma}$ is not a stochastic matrix. The boundary process is \emph{indivisible} at $t' = 1/2$.
+
+\emph{Coherences.} Preparing the boundary in configuration 1, so that $\rho^{\rm bdy}(0) = \text{diag}(1, 0, 0)$, the density matrix at $t = 1/2$ is
+\begin{equation}
+\rho^{\rm bdy}\!\left(\tfrac{1}{2}\right) = \frac{1}{9}\begin{pmatrix} 4 & 4 & -2 \\ 4 & 4 & -2 \\ -2 & -2 & 1 \end{pmatrix}.
+\label{eq:rho_half}
+\end{equation}
+The diagonal entries $(4/9, 4/9, 1/9)$ are the configuration probabilities. The off-diagonal entries---the coherences---are as large as $4/9$, comparable to the diagonal probabilities themselves. These coherences encode the indivisibility of the boundary process in Hilbert-space language.
+
+\emph{Holographic coarse-graining.} We model the holographic projection as a coarse-graining that maps the $N = 3$ boundary configurations to $N_{\rm bulk} = 2$ bulk configurations:
+\begin{equation}
+A = \{1\}, \qquad B = \{2, 3\}.
+\label{eq:coarsegrain}
+\end{equation}
+This is the simplest nontrivial model of a holographic map that reduces the number of degrees of freedom. The bulk transition matrix $\Gamma^{\rm bulk}$ is obtained by marginalizing over boundary configurations within each bulk group. At $t = 1/2$:
+\begin{equation}
+\Gamma^{\rm bulk}\!\left(\tfrac{1}{2}\right) = \begin{pmatrix} 4/9 & 5/18 \\ 5/9 & 13/18 \end{pmatrix}.
+\label{eq:Gamma_bulk_half}
+\end{equation}
+
+\emph{Bulk indivisibility.} Computing the analogous factorization test for the bulk process, $\tilde{\Gamma}^{\rm bulk} = \Gamma^{\rm bulk}(1) \cdot [\Gamma^{\rm bulk}(\tfrac{1}{2})]^{-1}$, yields entries as negative as $-5/3$. The coarse-grained bulk process inherits the indivisibility of the boundary. This is the central result of the toy model: \emph{non-Markovianity propagates from the boundary through holographic coarse-graining to the bulk.}
+
+\emph{Memory residual.} The history-dependence of the bulk dynamics can be quantified by comparing the actual bulk probability $p_A(t)$ with the prediction of a Markov model that uses only the instantaneous transition rate. The residual---the difference between the two---oscillates with amplitude up to $8\%$ of the probability, demonstrating that the bulk evolution carries information about its history that a Markovian description cannot capture. This residual is the toy-model analogue of the memory kernel Eq.~\eqref{eq:memory} in the cosmological setting.
+
+The structure of this example---boundary indivisibility generating coherences that propagate through coarse-graining to produce bulk non-Markovianity---is the essential mechanism of the full cosmological framework, scaled from $N = 3$ to $N = \exp(S_{\rm dS}) \sim \exp(10^{122})$.
+
+The cosmological memory kernel $G_{\rm ret}$ in Eq.~\eqref{eq:memory} is identified with the continuum limit of this coarse-grained non-Markovian residual. Specifically, let $\Gamma^{\rm bulk}(k; \eta \leftarrow \eta_0)$ denote the bulk transition matrix at wavenumber $k$, obtained by coarse-graining the boundary transition matrix over configurations associated with the spatial mode $k$. Let $\Gamma^{\rm Markov}(k; \eta \leftarrow \eta_0)$ denote the best Markovian (divisible) approximation to $\Gamma^{\rm bulk}$, constructed by iterating the instantaneous transition rate. The memory kernel is then defined operationally as the generator of the residual:
+\begin{equation}
+G_{\rm ret}(k; \eta - \eta') \equiv \lim_{N \to \infty} \frac{\Gamma^{\rm bulk}_{ij}(k; \eta \leftarrow \eta') - \Gamma^{\rm Markov}_{ij}(k; \eta \leftarrow \eta')}{\Delta\eta},
+\label{eq:kernel_bridge}
+\end{equation}
+where the limit is taken over increasingly fine coarse-grainings of the boundary configuration space. The toy model of this section demonstrates this identification for $N = 3$; the quantitative cosmological predictions of Refs.~\cite{PaperI,PaperVIII} evaluate the resulting integral Eq.~\eqref{eq:memory} using physically motivated kernel profiles constrained by the thermodynamic arguments of Sec.~\ref{sec:lowpass}. In particular, the cosmological kernel used in the DESI BAO analysis of Ref.~\cite{PaperVIII} is interpreted as the coarse-grained manifestation of the boundary indivisible dynamics demonstrated in this section; a full derivation of this mapping in the continuum limit is left to future work.
+
+\subsection{Emergence of the memory kernel}
+
+The non-Markovian character of the boundary dynamics propagates through the holographic map into the bulk. To see how, consider a scalar perturbation with wavenumber $k$ in the bulk. In standard $\Lambda$CDM cosmology, the evolution of this perturbation is governed by a second-order differential equation---a Markovian law on the perturbation amplitude and its time derivative. In the present framework, the bulk perturbation receives an additional contribution sourced by the boundary's indivisible dynamics.
+
+Because the boundary transition matrix $\Gamma^{\rm bdy}(\eta \leftarrow \eta_0)$ is indivisible, the corresponding bulk evolution cannot be factored through intermediate conformal times. When projected into the bulk matter perturbation equation, this non-factorizability appears as a history-dependent source term: the effective dark-matter-like contribution at time $\eta$ depends on the entire prior history of baryonic source perturbations $S_b(k,\eta')$ for $\eta' < \eta$, weighted by the retarded memory kernel $G_{\rm ret}(\eta - \eta')$:
+\begin{equation}
+m(k,\eta) = \int_0^{\eta} G_{\rm ret}(\eta - \eta')\, S_b(k,\eta')\, d\eta'.
+\label{eq:memory_kernel}
+\end{equation}
+This is Eq.~\eqref{eq:memory}. The kernel $G_{\rm ret}$ encodes the boundary's finite response time---the timescale over which the boundary's microstate configuration updates in response to bulk perturbations.
+
+The memory kernel is \emph{not} a conventional non-Markovian memory in the sense of storing full trajectory histories. As Barandes emphasizes~\cite{Barandes2025SQC}, indivisible processes carry \emph{less} structure than traditional non-Markovian processes: only first-order conditional probabilities are specified, with higher-order conditional probabilities left unspecified. The kernel $G_{\rm ret}$ encodes this sparse structure---it constrains transition probabilities between initial and final times without specifying intermediate trajectories.
+
+\subsection{Thermodynamic selection of the kernel shape}
+\label{sec:lowpass}
+
+The finite area of the de~Sitter horizon imposes a Bekenstein--Hawking cap on the boundary's information content. This cap constrains the form of $G_{\rm ret}$, but does not by itself determine whether the kernel is low-pass, band-pass, or high-pass. An additional physical input is required: the second law of thermodynamics applied to the boundary.
+
+To see why, consider the boundary's coarse-grained entropy $S_{\rm bdy}(\eta)$. The second law requires $dS_{\rm bdy}/d\eta \geq 0$ for the forward-evolving cosmology. Now suppose the memory kernel has a band-pass feature: $G_{\rm ret}(k)$ is enhanced at some characteristic wavenumber $k_*$. A baryonic perturbation at $k_*$ would be selectively amplified by the kernel, concentrating the boundary's response into a narrow spectral band. This concentration \emph{reduces} the boundary's coarse-grained entropy---it moves the microstate distribution away from the maximum-entropy thermal equilibrium and toward a lower-entropy, spectrally peaked configuration. A sustained band-pass kernel would therefore require $dS_{\rm bdy}/d\eta < 0$ during the amplification phase, violating the second law.
+
+A low-pass kernel, by contrast, uniformly damps high-wavenumber fluctuations while transmitting low-wavenumber modes. This monotonically increases the coarse-grained entropy by smoothing the microstate distribution toward the featureless thermal equilibrium. The second law is satisfied at all times and all scales.
+
+This argument can be stated more precisely. For a boundary perturbation $\delta\rho^{\rm bdy}(k, \eta)$ at wavenumber $k$, the entropy production rate associated with the kernel's action follows from linear response theory applied to the boundary microstate distribution. The kernel $G_{\rm ret}(k)$ acts as a response function coupling the source perturbation at wavenumber $k$ to the boundary's microstate redistribution; the resulting entropy change is quadratic in the perturbation amplitude (as required by the fluctuation-dissipation theorem~\cite{Kubo1966}) and proportional to the spectral gradient of the response function, which determines whether the kernel concentrates or disperses the microstate distribution at scale $k$. Explicitly:
+\begin{equation}
+\frac{dS}{d\eta}\bigg|_k \propto -G_{\rm ret}(k)\, |\delta\rho^{\rm bdy}(k)|^2 \, \frac{\partial \ln G_{\rm ret}}{\partial k}\bigg|_k.
+\label{eq:entropy_production}
+\end{equation}
+The requirement $dS/d\eta|_k \geq 0$ for all $k$ and all perturbation amplitudes then demands
+\begin{equation}
+\frac{\partial G_{\rm ret}(k)}{\partial k} \leq 0 \quad \text{for all } k > 0,
+\label{eq:lowpass_condition}
+\end{equation}
+i.e., the kernel must be monotonically non-increasing in $|k|$. This is the defining property of a low-pass filter.
+
+Importantly, this result does \emph{not} follow from indivisibility alone. The toy model of Sec.~\ref{sec:toymodel}, extended to $N = 50$ boundary configurations, produces a memory residual that is not automatically low-pass: resonant enhancement occurs at boundary wavenumbers commensurate with the system's natural frequencies. The second law acts as a \emph{selection principle} on the space of indivisible stochastic processes, restricting the physically realizable kernels to the low-pass subset. This is a concrete example of thermodynamic constraints sharpening the predictions of the stochastic framework beyond what pure indivisibility provides.
+
+The low-pass constraint is testable. It predicts that the suppression of $P(k)$ relative to $\Lambda$CDM is monotonically increasing with $k$ up to the kernel's characteristic scale. A band-pass kernel would predict non-monotonic features in the power spectrum residuals. Current BAO data from DESI~\cite{DESI2024} are approaching the sensitivity needed to distinguish these cases.
+
+\subsection{The write-lag attractor}
+
+The boundary's finite response time defines a characteristic timescale $\tau_{\rm lag}$ between the onset of a bulk perturbation and the completion of the boundary's corresponding microstate update. In Ref.~\cite{PaperVII}, this timescale is shown to satisfy the attractor relation
+\begin{equation}
+\tau_{\rm lag} \times H_0 \approx \frac{1}{2},
+\label{eq:writelag}
+\end{equation}
+a clean dimensionless identity linking the boundary response time to the cosmological expansion rate. This relation is derived, not assumed: it emerges from the competition between boundary information processing (which tends to reduce $\tau_{\rm lag}$) and cosmological expansion (which continuously generates new perturbations requiring processing). The attractor is reached when these two rates balance.
+
+The factor of $1/2$ is notable. Combined with the peak time $t_{\rm peak}$ of the cosmic star formation rate, the attractor yields $t_{\rm peak} + \tau_{\rm lag} \approx 7.1 \pm 0.3\;\text{Gyr}$, which coincides with the epoch at which the expansion of the universe begins to accelerate. In this framework, the apparent onset of dark energy is not caused by a cosmological constant or a dynamical scalar field but is the bulk manifestation of the boundary write-rate approaching its attractor value.
+
+\subsection{Summary: established results and open conjectures}
+
+For clarity, we distinguish what is established within this paper from what remains conjectural. \emph{Established:} (i)~the stochastic-quantum correspondence (Sec.~\ref{sec:SQC}), which is a mathematical theorem proved by Barandes~\cite{Barandes2025SQT}; (ii)~the identification of the de~Sitter horizon as a finite configuration space (Sec.~\ref{sec:deSitter}), which follows from standard horizon thermodynamics; (iii)~the propagation of indivisibility through coarse-graining (Sec.~\ref{sec:toymodel}), demonstrated exactly for the $N = 3 \to 2$ toy model; and (iv)~the low-pass constraint on the kernel shape (Sec.~\ref{sec:lowpass}), derived from the boundary second law. \emph{Conjectured:} (i)~the holographic indivisibility conjecture (Sec.~\ref{sec:projection}), that the full de~Sitter holographic map preserves non-Markovianity; (ii)~the specific identification of $G_{\rm ret}$ with the continuum limit of the coarse-grained non-Markovian residual (Eq.~\ref{eq:kernel_bridge}); and (iii)~the quantitative derivation of the kernel's functional form from boundary microphysics. The framework's falsifiable predictions (Sec.~\ref{sec:predictions}) provide the empirical means to test these conjectures.
+
+
+%======================================================================
+% V. COHERENCE, DECOHERENCE, AND THE DOUBLE TRANSLATION
+%======================================================================
+\section{Bulk quantum coherence from boundary indivisibility}
+\label{sec:coherence}
+
+\subsection{Interference as twice-encoded indivisibility}
+
+In the stochastic-quantum correspondence, quantum coherence and interference arise as the Hilbert-space encoding of the underlying process's indivisibility (Sec.~\ref{sec:SQC}, Eq.~\eqref{eq:interference}). In the present framework, this encoding occurs twice.
+
+At the boundary level, the indivisible stochastic dynamics on $\mathcal{C}$ produces coherences in the boundary density matrix $\rho^{\rm bdy}$. These boundary coherences encode the fact that the boundary's transition probabilities cannot be factored through intermediate times. They are not physical ``things'' on the boundary---they are mathematical artifacts of representing the indivisible process in Hilbert-space language.
+
+At the bulk level, the holographic projection maps boundary coherences to bulk coherences. The interference patterns observed in bulk quantum experiments---double-slit experiments, Mach--Zehnder interferometers, entanglement correlations---are the holographic images of boundary coherences, which are themselves the Hilbert-space encoding of boundary indivisibility. No ``quantum wave'' passes through both slits; no system is ``in two places at once.'' The boundary microstate has a definite configuration at each conformal time. The interference pattern in the bulk is the observational signature of the non-factorizability of the boundary dynamics, projected holographically into three dimensions.
+
+\subsection{Decoherence and division events}
+
+In the stochastic-quantum correspondence, a \emph{division event} occurs when a system interacts with a larger environment and the resulting joint evolution, when marginalized over the environment's degrees of freedom, produces a moment at which the effective dynamics of the system becomes momentarily divisible~\cite{Barandes2025QSIP}. In Hilbert-space language, this corresponds to the suppression of off-diagonal coherences---decoherence.
+
+In the present framework, the boundary plays the role of the environment. When the boundary completes a microstate update in response to a bulk perturbation---a process we term a \emph{boundary update event}---the bulk dynamics acquires a division event. The effective evolution of the bulk perturbation can be restarted from the moment of the update. Prior to the update, the bulk dynamics is indivisible across the interval; after the update, divisibility is restored and new evolution begins.
+
+This identification has a specific observational consequence at cosmological scales. The Bullet Cluster~\cite{Clowe2006}---where the gravitational lensing signal is offset from the stripped gas toward the galaxy positions---is naturally explained by the lag between the gas displacement and the boundary's update of the gravitational (lensing) map. The old galaxy-centered boundary configuration continues to determine the transition probabilities (and hence the lensing geometry) until the boundary update completes. The offset is a spatial manifestation of the temporal write-lag $\tau_{\rm lag}$.
+
+\subsection{Beables, emergibles, and the memory contribution}
+
+The stochastic-quantum correspondence distinguishes between two classes of observables~\cite{Barandes2025QSIP}. \emph{Beables}---in Bell's terminology~\cite{Bell1982}---are observables that passively reveal pre-existing configurations of the system. They correspond to the diagonal operators in the preferred basis tied to the configuration space. \emph{Emergibles} are observables that arise from the interaction between the system and a measuring device; they correspond to non-diagonal operators and do not reflect pre-existing properties~\cite{Barandes2025QSIP,DaumerDurrGoldsteinZanghi1996}.
+
+In the present framework, bulk spatial configurations---the positions of galaxies, the density field of baryonic matter---are beables. They correspond to definite boundary configurations at each conformal time. The dark-matter-like contribution $m(k,\eta)$ in Eq.~\eqref{eq:memory_kernel} is neither a beable nor a standard emergible. It is not a pre-existing configuration of any physical field (there is no dark matter particle), and it is not an artifact of a measurement interaction. Rather, it is the \emph{bulk imprint of the boundary's memory}---the cumulative effect of the boundary's non-Markovian response to the history of baryonic perturbations. We propose the term \emph{holographic residual} for this class of observable: a bulk quantity that arises from the double translation of boundary indivisibility and has no counterpart in the configuration space of either the boundary or the bulk alone.
+
+\subsection{Compactness of the memory variable}
+
+The effective dark-matter contribution $m(k,\eta)$ is bounded. Three arguments establish this compactness:
+
+(i)~The Bekenstein--Hawking cap on boundary information content limits the total influence the memory kernel can exert. The integrated kernel strength $\int_0^{\infty} G_{\rm ret}(\eta)\, d\eta$ is finite, bounded by the ratio of boundary entropy to the perturbation amplitude.
+
+(ii)~The low-pass character of $G_{\rm ret}$ (Sec.~\ref{sec:projection}) combined with the finite amplitude of the baryonic source $S_b$ ensures that $m(k,\eta)$ is bounded for all $k$ and $\eta$.
+
+(iii)~The write-lag attractor Eq.~\eqref{eq:writelag} implies that at late times, the boundary approaches a quasi-equilibrium state in which the rate of new perturbation processing matches the rate of cosmological dilution. In this regime, $m(k,\eta)$ asymptotes to a constant rather than growing without bound.
+
+This saturation is a \emph{distinctive prediction} of the framework. $\Lambda$CDM dark matter grows continuously under gravitational instability, with no intrinsic saturation mechanism. The present framework predicts that the effective dark-matter contribution ceases to grow at late times. Whether this saturation timescale falls within the observational window of DESI and Euclid~\cite{Euclid2024} is a quantitative question addressed in Ref.~\cite{PaperVIII}.
+
+
+%======================================================================
+% VI. PREDICTIONS AND RELATION TO EXISTING FRAMEWORKS
+%======================================================================
+\section{Observational predictions and relation to existing frameworks}
+\label{sec:predictions}
+
+\subsection{Summary of predictions}
+
+The framework developed in the preceding sections generates three classes of testable predictions, each derived in dedicated companion papers with detailed calculations. We summarize them here.
+
+\emph{Galactic dynamics.} The acceleration threshold $a_u = cH_0/(2\pi)$, derived from de~Sitter horizon thermodynamics with no additional free parameters, determines the scale below which the memory kernel's contribution to rotation curves becomes significant. In Ref.~\cite{PaperI}, this prediction is tested against 175 galaxies in the SPARC dataset~\cite{McGaugh2016SPARC}. The holographic threshold $a_u$ outperforms the empirically calibrated MOND scale $a_0$ in a majority of cases, with a median reduced chi-squared of $\chi^2/\nu = 1.41$ across the sample.
+
+\emph{Large-scale structure.} The memory kernel's low-pass filtering of baryonic perturbations produces a redshift-dependent suppression of the matter power spectrum at BAO scales. Using the CLASS Boltzmann code~\cite{CLASS2011}, Ref.~\cite{PaperVIII} quantifies this suppression as 1--8\% relative to $\Lambda$CDM, growing with redshift. The DESI collaboration's hints of evolving dark energy~\cite{DESI2024}---specifically, their finding that $w_0 > -1$ is preferred---are qualitatively consistent with the predicted memory-filtered power spectrum. The prediction is directly testable against DESI DR1/DR2 BAO data; a quantitative comparison using the full BAO analysis pipeline is presented in Ref.~\cite{PaperVIII}.
+
+\emph{CMB polarization.} The boundary's geometric structure constrains the cosmic birefringence angle to $\beta = \sqrt{2\varepsilon}/\pi$, where $\varepsilon$ is a residual boundary parameter. Combined with the tensor-to-scalar ratio, this yields the joint prediction $r = 8\pi^2\beta^2$. For the observed $\beta \approx 0.30^{\circ} \pm 0.11^{\circ}$~\cite{MinamiKomatsu2020,Eskilt2022}, this predicts $r \approx 0.002$, within reach of LiteBIRD~\cite{LiteBIRD2023}, the Simons Observatory~\cite{SimonsObs2019}, and CMB-S4~\cite{CMBS42016}. Crucially, the framework predicts that the birefringence arises from the geometric structure of the boundary projection, not from a pseudoscalar field traversing a potential---yielding $n = 0$ in the $n\pi$ ambiguity of Naokawa et al.~\cite{Naokawa2024}, a clean falsifiable distinction from axion-like particle (ALP) models.
+
+\subsection{Comparison with $\Lambda$CDM}
+
+The standard $\Lambda$CDM model accounts for galactic rotation curves by invoking a collisionless cold dark matter particle with a mass and cross-section tuned to reproduce the observed phenomenology, for cosmic acceleration by invoking a cosmological constant $\Lambda$ whose value is unexplained, and for the CMB power spectrum by fitting six parameters to the data. The present framework reproduces these successes---to the precision quantified in the companion papers---with a single mechanism (the boundary memory kernel) and a single measured input ($H_0$). Where $\Lambda$CDM requires two new sectors of physics (dark matter and dark energy), the present framework requires none. Where $\Lambda$CDM treats the coincidence $a_0 \sim cH_0$ as accidental, the present framework derives it from horizon thermodynamics.
+
+The framework does not claim to replace $\Lambda$CDM at all scales and redshifts. The companion papers quantify the regime of agreement and the regime of tension. The critical empirical question is whether the predicted $P(k)$ suppression at BAO scales matches the DESI data more accurately than the $\Lambda$CDM prediction. This is a concrete, near-term test.
+
+\subsection{Comparison with Verlinde's emergent gravity}
+
+Verlinde's proposal~\cite{Verlinde2017} that dark matter phenomena arise from emergent gravitational effects associated with de~Sitter entropy shares a conceptual starting point with the present work: both invoke the thermodynamics of the cosmological horizon. The key difference is the mechanism. Verlinde's framework introduces an elastic response of the de~Sitter medium, producing a modification of the gravitational force law. The present framework introduces a non-Markovian memory kernel arising from the boundary's finite information-processing capacity. Verlinde's framework does not invoke the stochastic-quantum correspondence or the double translation; the present framework does not invoke an elastic medium. The empirical predictions differ in their scale-dependence and redshift evolution, providing a basis for observational discrimination.
+
+\subsection{Comparison with MOND and its extensions}
+
+Milgrom's Modified Newtonian Dynamics~\cite{Milgrom1983} successfully predicts the phenomenology of galactic rotation curves using a single parameter $a_0$, but does not explain the origin of this scale or extend naturally to cosmological observables. The present framework derives the analogous scale $a_u = cH_0/(2\pi)$ from first principles, provides a mechanism (the memory kernel) rather than a force-law modification, and extends naturally to cosmological scales through the same kernel. The framework thus provides a potential \emph{explanation} for why MOND works at the galactic scale while also addressing the cosmological data that MOND alone cannot accommodate.
+
+
+%======================================================================
+% VI.5 WHAT THIS PAPER DOES NOT SHOW
+%======================================================================
+\subsection{What this paper does not show}
+
+For clarity, we state explicitly what is not established here.
+
+This paper does not derive the full microscopic dynamics of the de~Sitter holographic map. The identification of the de~Sitter horizon as a configuration space for indivisible stochastic dynamics is a proposal, not a theorem within an established framework of de~Sitter holography.
+
+This paper does not uniquely determine the functional form of the memory kernel $G_{\rm ret}(\eta - \eta')$. The second-law argument of Sec.~\ref{sec:lowpass} constrains the kernel to be low-pass and monotonically decreasing in $|k|$, but does not fix its detailed profile. The quantitative predictions in Refs.~\cite{PaperI,PaperVIII} use physically motivated profiles consistent with this constraint; a first-principles derivation from boundary microphysics is left to future work.
+
+This paper does not claim that the framework reproduces all of $\Lambda$CDM's successful predictions. It addresses three observable sectors (galactic rotation curves, BAO-scale power spectrum, CMB birefringence). Agreement or disagreement in other sectors has not been assessed here.
+
+This paper does not resolve all foundational questions about quantum mechanics. The stochastic-quantum correspondence of Barandes~\cite{Barandes2025SQT} is used as a mathematical tool; the broader interpretive program is not required and not endorsed.
+
+The broader program of which this paper is part remains incomplete at the microscopic level. Its value is therefore not that it closes any foundational question, but that it proposes a concrete mechanism---boundary indivisibility projected holographically---and derives from it predictions that are falsifiable with current and near-future data.
+
+%======================================================================
+% VII. DISCUSSION
+%======================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{The ontological hierarchy}
+
+The framework developed in this paper implies a four-layer ontological structure, of which two are physical and two are mathematical representations:
+
+\emph{Layer 0 (Pre-quantum):} A finite configuration space $\mathcal{C}$ on the de~Sitter screen, with $|\mathcal{C}| = \exp(A/4G\hbar)$, carrying indivisible stochastic dynamics. Ordinary probabilities. No Hilbert space, no wave function, no complex numbers. \emph{This is the sole physical layer of the boundary.}
+
+\emph{Layer 1 (Boundary quantum mechanics):} The stochastic-quantum correspondence applied to Layer~0 produces a boundary Hilbert space, unitary evolution, and a density matrix. This layer is a \emph{mathematical representation} of Layer~0, not a new physical entity. Its Hilbert-space ingredients---state vectors, coherences, observables---are convenient mathematical tools for computing transition probabilities that are ultimately ordinary real numbers.
+
+\emph{Layer 2 (Bulk quantum mechanics):} Holographic projection of Layer~1 into the three-dimensional bulk provides the framework for quantum field theory and semiclassical gravity. This layer is a \emph{second mathematical representation}, now of the holographically projected boundary dynamics. Coherence, interference, and entanglement in the bulk are the twice-encoded images of boundary indivisibility.
+
+\emph{Layer 3 (Observed physics):} Layer~2 evaluated at the specific boundary configuration determined by the cosmological initial condition and the current epoch. This is the physics we measure: rotation curves, CMB anisotropies, BAO signals, birefringence. \emph{This is the sole physical layer of the bulk.}
+
+This hierarchy dissolves the quantum measurement problem in the sense of Barandes~\cite{Barandes2025QSIP}: there is no fundamental wave function to collapse. The boundary configuration is definite at each conformal time. Apparent superpositions in the bulk are artifacts of the Hilbert-space representation. Decoherence (division events) arises from the boundary's interaction with its own information-processing dynamics, not from an axiom.
+
+\subsection{Relation to cyclic cosmology}
+
+If the de~Sitter boundary carries forward a residual parameter $\varepsilon$ from one cosmological aeon to the next---as suggested by the birefringence prediction $\beta = \sqrt{2\varepsilon}/\pi$---then the aeon-to-aeon evolution defines a map $F$ on the space of boundary configurations. The fixed-point hypothesis~\cite{PaperXI} proposes that $F$ converges to a self-reproducing parameter set: an attractor in the space of indivisible stochastic processes on a finite configuration space. If correct, this dissolves the fine-tuning problem without invoking a multiverse. The cosmological parameters are not coincidences; they are the unique fixed point of the boundary dynamics.
+
+The finiteness of $\mathcal{C}$ makes this hypothesis mathematically tractable: it is a question about the long-time behavior of a finite-state dynamical system. Whether $F$ has an attracting fixed point is, in principle, decidable.
+
+\subsection{Relation to probabilistic general relativity and the domain of quantum field theory}
+
+The present framework does not propose to replace quantum field theory within its established domain. The Hilbert-space formulation of quantum mechanics, and its extension to quantum field theory, provides a spectacularly successful computational apparatus for microscopic physics: scattering amplitudes, decay rates, cross-sections, and the precision predictions of the Standard Model. The stochastic-quantum correspondence~\cite{Barandes2025SQC} identifies this Hilbert-space apparatus as a mathematical representation of underlying indivisible stochastic dynamics, but the representation is extraordinarily convenient for the systems to which the Standard Model applies, and there is no reason to abandon it there.
+
+The indivisible stochastic framework becomes essential in regimes where the Hilbert-space formulation encounters foundational difficulties: the measurement problem for macroscopic systems (Sec.~\ref{sec:intro}), the semiclassical gravity regime where quantum expectation values are treated as classical sources without foundational justification~\cite{Jacobson1995}, and the cosmological setting where the narrow category of measurement outcomes prescribed by the Dirac--von Neumann axioms is insufficient to describe the phenomena of interest---primordial gas mixing, structure formation, the onset of cosmic acceleration. In these regimes, the indivisible stochastic substrate provides the ontological and mathematical resources that the Hilbert-space representation lacks.
+
+This complementary positioning has a natural extension toward quantum gravity. Barandes has noted~\cite{Barandes2025SQC} that a fully probabilistic generalization of general relativity---not merely adding small stochastic corrections, but a comprehensive replacement of the deterministic Einstein equations with indivisible stochastic dynamics---may already constitute a theory of quantum gravity, since the indivisible stochastic framework reproduces the full Hilbert-space formalism without presupposing it. The present framework implements a version of this program at the cosmological level: the memory kernel $G_{\rm ret}$ modifies the matter sector of the Friedmann equations through a non-Markovian filter derived from boundary stochastic dynamics, without quantizing the metric tensor itself. The metric remains a classical field that responds to the effective stress-energy including the memory contribution $m(k,\eta)$. Whether this cosmological implementation can be extended to a full probabilistic reformulation of general relativity at all scales---and whether such a reformulation would resolve the ultraviolet difficulties of perturbative quantum gravity---remains an open question of considerable interest.
+
+\subsection{Open questions}
+
+Several questions remain open. The holographic indivisibility conjecture (Sec.~\ref{sec:projection}) requires verification within a specific de~Sitter holographic framework; we have demonstrated property~(iii) for coarse-graining by marginalization but not for the full holographic map. The quantitative derivation of the kernel functional form $G_{\rm ret}(\eta - \eta')$ from boundary microphysics awaits a more detailed model of the boundary stochastic dynamics; the present paper constrains the kernel's shape (low-pass, Sec.~\ref{sec:lowpass}) and characteristic scale ($a_u$, Sec.~\ref{sec:deSitter}) but does not derive its detailed profile. The extension of the framework to quantum gravity beyond the semiclassical regime---where the bulk geometry itself fluctuates---is not yet addressed. Quantitative predictions for the matter power spectrum and CMB observables, including full Boltzmann-code calculations, are presented in companion papers~\cite{PaperI,PaperVIII} rather than reproduced here; this paper focuses on the foundational mechanism.
+
+We note that this paper relies on the stochastic-quantum correspondence as a \emph{mathematical} tool---specifically, the proven equivalence between indivisible stochastic processes on finite configuration spaces and finite-dimensional Hilbert-space quantum mechanics~\cite{Barandes2025SQT}. The framework does not depend on the broader interpretive program associated with indivisible stochastic processes, including claims about the ontological status of the wave function, the resolution of Bell's theorem through redefined causal locality, or the extension of the correspondence to infinite-dimensional systems. Should any aspect of the interpretive program encounter difficulties, the mathematical correspondence for finite-dimensional systems---which is the case relevant to the finite boundary configuration space $\mathcal{C}$---would remain intact, and with it the predictions derived here. The physical content of the framework resides in the identification of the de~Sitter horizon as the arena for non-Markovian stochastic dynamics and in the thermodynamic constraints (the second law, the Gibbons--Hawking temperature, the Bekenstein--Hawking bound) that shape the resulting bulk memory kernel. These ingredients are independent of any particular interpretation of quantum mechanics.
+
+These questions notwithstanding, the framework makes specific predictions that are testable with current and near-future data. If the predicted $P(k)$ suppression is confirmed by DESI, if the birefringence-to-tensor relation $r = 8\pi^2\beta^2$ is confirmed by LiteBIRD, and if the acceleration scale $a_u = cH_0/(2\pi)$ continues to outperform $a_0$ as the SPARC sample grows, the case for a holographic-decoherence origin of quantum dynamics will become empirical rather than theoretical.
+
+
+%======================================================================
+% ACKNOWLEDGMENTS
+%======================================================================
+\begin{acknowledgments}
+The author thanks J.~A.~Barandes for the stochastic-quantum correspondence that provides the mathematical foundation for this work, and acknowledges the use of computational tools in the development and verification of the analytical results presented here. This research was conducted independently, without institutional funding.
+\end{acknowledgments}
+
+
+%======================================================================
+% REFERENCES
+%======================================================================
+\begin{thebibliography}{99}
+
+\bibitem{tHooft1993} G.~'t~Hooft, ``Dimensional reduction in quantum gravity,'' \href{https://arxiv.org/abs/gr-qc/9310026}{arXiv:gr-qc/9310026} (1993).
+
+\bibitem{Susskind1995} L.~Susskind, ``The world as a hologram,'' J. Math. Phys. \textbf{36}, 6377 (1995), \href{https://arxiv.org/abs/hep-th/9409089}{arXiv:hep-th/9409089}.
+
+\bibitem{Bekenstein1973} J.~D.~Bekenstein, ``Black holes and entropy,'' Phys. Rev. D \textbf{7}, 2333 (1973).
+
+\bibitem{Hawking1975} S.~W.~Hawking, ``Particle creation by black holes,'' Commun. Math. Phys. \textbf{43}, 199 (1975).
+
+\bibitem{Maldacena1999} J.~M.~Maldacena, ``The large-$N$ limit of superconformal field theories and supergravity,'' Int. J. Theor. Phys. \textbf{38}, 1113 (1999), \href{https://arxiv.org/abs/hep-th/9711200}{arXiv:hep-th/9711200}.
+
+\bibitem{Bousso1999} R.~Bousso, ``A covariant entropy conjecture,'' JHEP \textbf{07}, 004 (1999), \href{https://arxiv.org/abs/hep-th/9905177}{arXiv:hep-th/9905177}.
+
+\bibitem{GibbonsHawking1977} G.~W.~Gibbons and S.~W.~Hawking, ``Cosmological event horizons, thermodynamics, and particle creation,'' Phys. Rev. D \textbf{15}, 2738 (1977).
+
+\bibitem{RyuTakayanagi2006} S.~Ryu and T.~Takayanagi, ``Holographic derivation of entanglement entropy from the anti--de Sitter space/conformal field theory correspondence,'' Phys. Rev. Lett. \textbf{96}, 181602 (2006), \href{https://arxiv.org/abs/hep-th/0603001}{arXiv:hep-th/0603001}.
+
+\bibitem{MaldacenaSusskind2013} J.~Maldacena and L.~Susskind, ``Cool horizons for entangled black holes,'' Fortsch. Phys. \textbf{61}, 781 (2013), \href{https://arxiv.org/abs/1306.0533}{arXiv:1306.0533}.
+
+\bibitem{VanRaamsdonk2010} M.~Van~Raamsdonk, ``Building up spacetime with quantum entanglement,'' Gen. Rel. Grav. \textbf{42}, 2323 (2010), \href{https://arxiv.org/abs/1005.3035}{arXiv:1005.3035}.
+
+\bibitem{CaoCarrollMichalakis2017} C.~Cao, S.~M.~Carroll, and S.~Michalakis, ``Space from Hilbert space: Recovering geometry from bulk entanglement,'' Phys. Rev. D \textbf{95}, 024031 (2017), \href{https://arxiv.org/abs/1606.08444}{arXiv:1606.08444}.
+
+\bibitem{Jacobson1995} T.~Jacobson, ``Thermodynamics of spacetime: The Einstein equation of state,'' Phys. Rev. Lett. \textbf{75}, 1260 (1995), \href{https://arxiv.org/abs/gr-qc/9504004}{arXiv:gr-qc/9504004}.
+
+\bibitem{Barandes2025SQC} J.~A.~Barandes, ``The stochastic-quantum correspondence,'' Phil. Phys. \textbf{3}(1), 8 (2025), \href{https://arxiv.org/abs/2302.10778}{arXiv:2302.10778}.
+
+\bibitem{Barandes2025SQT} J.~A.~Barandes, ``The stochastic-quantum theorem,'' \href{https://arxiv.org/abs/2309.03085}{arXiv:2309.03085} (2023).
+
+\bibitem{Barandes2025QSIP} J.~A.~Barandes, ``Quantum systems as indivisible stochastic processes,'' \href{https://arxiv.org/abs/2507.21192}{arXiv:2507.21192} (2025).
+
+\bibitem{WolfCirac2008} M.~M.~Wolf and J.~I.~Cirac, ``Dividing quantum channels,'' Commun. Math. Phys. \textbf{279}, 147 (2008).
+
+\bibitem{MilzModi2021} S.~Milz and K.~Modi, ``Quantum stochastic processes and quantum non-Markovian phenomena,'' PRX Quantum \textbf{2}, 030201 (2021).
+
+\bibitem{DESI2024} DESI Collaboration, ``DESI 2024 VI: Cosmological constraints from the measurements of baryon acoustic oscillations,'' \href{https://arxiv.org/abs/2404.03002}{arXiv:2404.03002} (2024).
+
+\bibitem{McGaugh2016SPARC} S.~S.~McGaugh, F.~Lelli, and J.~M.~Schombert, ``Radial acceleration relation in rotationally supported galaxies,'' Phys. Rev. Lett. \textbf{117}, 201101 (2016), \href{https://arxiv.org/abs/1609.05917}{arXiv:1609.05917}.
+
+\bibitem{Lelli2017} F.~Lelli, S.~S.~McGaugh, J.~M.~Schombert, and M.~S.~Pawlowski, ``One law to rule them all: The radial acceleration relation of galaxies,'' Astrophys. J. \textbf{836}, 152 (2017).
+
+\bibitem{MinamiKomatsu2020} Y.~Minami and E.~Komatsu, ``New extraction of the cosmic birefringence from the Planck 2018 polarization data,'' Phys. Rev. Lett. \textbf{125}, 221301 (2020).
+
+\bibitem{Eskilt2022} J.~R.~Eskilt, ``Frequency-dependent constraints on cosmic birefringence from the LFI and HFI Planck Data Release 4,'' Astron. Astrophys. \textbf{662}, A10 (2022).
+
+\bibitem{Milgrom1983} M.~Milgrom, ``A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis,'' Astrophys. J. \textbf{270}, 365 (1983).
+
+\bibitem{Unruh1976} W.~G.~Unruh, ``Notes on black-hole evaporation,'' Phys. Rev. D \textbf{14}, 870 (1976).
+
+\bibitem{Stinespring1955} W.~F.~Stinespring, ``Positive functions on C$^*$-algebras,'' Proc. Amer. Math. Soc. \textbf{6}, 211 (1955).
+
+\bibitem{Kubo1966} R.~Kubo, ``The fluctuation-dissipation theorem,'' Rep. Prog. Phys. \textbf{29}, 255 (1966).
+
+\bibitem{Penrose1979} R.~Penrose, ``Singularities and time asymmetry,'' in \emph{General Relativity: An Einstein Centenary Survey}, edited by S.~W.~Hawking and W.~Israel (Cambridge University Press, 1979), pp.~581--638.
+
+\bibitem{Carroll2010} S.~M.~Carroll, \emph{From Eternity to Here: The Quest for the Ultimate Theory of Time} (Dutton, 2010).
+
+\bibitem{Kiely2025} A.~Kiely, G.~Pleasance, and S.~Campbell, \href{https://arxiv.org/abs/2510.12313}{arXiv:2510.12313} (2025).
+
+\bibitem{HKLL2006} A.~Hamilton, D.~Kabat, G.~Lifschytz, and D.~A.~Lowe, ``Holographic representation of local bulk operators,'' Phys. Rev. D \textbf{74}, 066009 (2006), \href{https://arxiv.org/abs/hep-th/0606141}{arXiv:hep-th/0606141}.
+
+\bibitem{Almheiri2015} A.~Almheiri, X.~Dong, and D.~Harlow, ``Bulk locality and quantum error correction in AdS/CFT,'' JHEP \textbf{04}, 163 (2015), \href{https://arxiv.org/abs/1411.7041}{arXiv:1411.7041}.
+
+\bibitem{Dong2016} X.~Dong, D.~Harlow, and A.~C.~Wall, ``Reconstruction of bulk operators within the entanglement wedge in gauge-gravity duality,'' Phys. Rev. Lett. \textbf{117}, 021601 (2016).
+
+\bibitem{Penington2020} G.~Penington, ``Entanglement wedge reconstruction and the information problem,'' JHEP \textbf{09}, 002 (2020), \href{https://arxiv.org/abs/1905.08255}{arXiv:1905.08255}.
+
+\bibitem{Strominger2001} A.~Strominger, ``The dS/CFT correspondence,'' JHEP \textbf{10}, 034 (2001), \href{https://arxiv.org/abs/hep-th/0106113}{arXiv:hep-th/0106113}.
+
+\bibitem{AnniosdeSitter2011} D.~Anninos, ``De Sitter musings,'' Int. J. Mod. Phys. A \textbf{27}, 1230013 (2012), \href{https://arxiv.org/abs/1205.3855}{arXiv:1205.3855}.
+
+\bibitem{Clowe2006} D.~Clowe, M.~Brada\v{c}, A.~H.~Gonzalez, M.~Markevitch, S.~W.~Randall, C.~Jones, and D.~Zaritsky, ``A direct empirical proof of the existence of dark matter,'' Astrophys. J. Lett. \textbf{648}, L109 (2006).
+
+\bibitem{Bell1982} J.~S.~Bell, ``On the impossible pilot wave,'' Found. Phys. \textbf{12}, 989 (1982).
+
+\bibitem{DaumerDurrGoldsteinZanghi1996} M.~Daumer, D.~D\"{u}rr, S.~Goldstein, and N.~Zangh\`{i}, ``Naive realism about operators,'' Erkenntnis \textbf{45}, 379 (1996).
+
+\bibitem{Verlinde2017} E.~P.~Verlinde, ``Emergent gravity and the dark universe,'' SciPost Phys. \textbf{2}, 016 (2017), \href{https://arxiv.org/abs/1611.02269}{arXiv:1611.02269}.
+
+\bibitem{Naokawa2024} T.~Naokawa et al., \href{https://arxiv.org/abs/2405.15538}{arXiv:2405.15538} (2024).
+
+\bibitem{CLASS2011} D.~Blas, J.~Lesgourgues, and T.~Lesgourges, ``The Cosmic Linear Anisotropy Solving System (CLASS). Part II: Approximation schemes,'' JCAP \textbf{07}, 034 (2011).
+
+\bibitem{LiteBIRD2023} LiteBIRD Collaboration, ``Probing cosmic inflation with the LiteBIRD cosmic microwave background polarization survey,'' Prog. Theor. Exp. Phys. \textbf{2023}, 042F01 (2023).
+
+\bibitem{SimonsObs2019} Simons Observatory Collaboration, ``The Simons Observatory: Science goals and forecasts,'' JCAP \textbf{02}, 056 (2019).
+
+\bibitem{CMBS42016} CMB-S4 Collaboration, ``CMB-S4 Science Book, First Edition,'' \href{https://arxiv.org/abs/1610.02743}{arXiv:1610.02743} (2016).
+
+\bibitem{Euclid2024} Euclid Collaboration, \href{https://arxiv.org/abs/2405.13491}{arXiv:2405.13491} (2024).
+
+\bibitem{PaperI} C.~G.~Smith Jr., ``Galactic rotation curves from the de~Sitter horizon temperature,'' Zenodo \href{https://doi.org/10.5281/zenodo.19004505}{10.5281/zenodo.19004505} (2026), submitted to Phys. Rev. Lett.
+
+\bibitem{PaperVII} C.~G.~Smith Jr., ``Dark energy as boundary encoding: The write rate drives the expansion rate,'' Zenodo \href{https://doi.org/10.5281/zenodo.19006093}{10.5281/zenodo.19006093} (2026).
+
+\bibitem{PaperVIII} C.~G.~Smith Jr., ``A self-gravitating memory kernel as a scalar alternative to cold dark matter: CMB, matter power spectrum, and the BAO-scale prediction,'' Zenodo \href{https://doi.org/10.5281/zenodo.19024077}{10.5281/zenodo.19024077} (2026), submitted to Phys. Rev. D.
+
+\bibitem{PaperXI} C.~G.~Smith Jr., ``Cyclic cosmology as a fixed-point attractor of boundary stochastic dynamics'' (2026), in preparation.
+
+\end{thebibliography}
+
+\end{document}
